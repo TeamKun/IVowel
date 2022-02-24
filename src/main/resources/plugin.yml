@@ -1,0 +1,6 @@
+name: IVowel
+version: '${version}'
+main: net.kunmc.lab.ivowel.IVowel
+api-version: 1.16
+authors: [ MORIMORI0317 ]
+description: The ikisugi vowel plugin...
