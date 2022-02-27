@@ -167,7 +167,7 @@ public class JapaneseManager {
         }
         sb.append(ssb);
         if (!nonThrow && !ssb.toString().isEmpty()) {
-            throw new IllegalStateException("変換できない文字がありました");
+            throw new IllegalStateException("変換できない文字がありました 「" + ssb + "」");
         }
         return sb.toString();
     }
