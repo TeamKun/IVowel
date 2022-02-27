@@ -24,17 +24,24 @@ repositories {
 configurations {
     shadow
     compileOnly.extendsFrom(shadow)
+    implementation.extendsFrom(shadow)
 }
 dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
 
     shadow 'net.kunmc.lab:ikisugi-logger:1.1'
+    shadow 'dev.felnull:felnull-java-library:1.41'
+    shadow 'com.atilika.kuromoji:kuromoji:0.9.0'
+    shadow 'com.atilika.kuromoji:kuromoji-ipadic:0.9.0'
+
 }
 shadowJar {
     classifier ''
     project.configurations.shadow.setTransitive(true);
     configurations = [project.configurations.shadow]
     relocate 'net.kunmc.lab.ikisugilogger', 'net.kunmc.lab.ivowel.lib.net.kunmc.lab.ikisugilogger'
+    relocate 'dev.felnull', 'net.kunmc.lab.ivowel.lib.dev.felnull'
+    relocate 'com.atilika.kuromoji', 'net.kunmc.lab.ivowel.lib.com.atilika.kuromoji'
 }
 
 def targetJavaVersion = 8
