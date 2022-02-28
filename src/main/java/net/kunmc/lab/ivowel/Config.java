@@ -1,7 +1,8 @@
 package net.kunmc.lab.ivowel;
 
 public class Config {
-    private boolean noError;
-    private boolean leaveLowercase;
-    private boolean leaveSymbol;
+    public static boolean noError;
+    public static boolean leaveLowercase = true;
+    public static boolean leaveSymbol = true;
+    public static boolean showHover = true;
 }
