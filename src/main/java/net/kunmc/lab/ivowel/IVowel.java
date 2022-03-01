@@ -14,6 +14,8 @@ public final class IVowel extends JavaPlugin {
         logger.setColorType(IkisugiLogger.ColorType.VOWEL_ONLY);
         logger.setCenter(true);
         getLogger().info(logger.createLn());
+
+        IVCommands.init();
     }
 
     @Override

@@ -4,3 +4,8 @@ main: net.kunmc.lab.ivowel.IVowel
 api-version: 1.16
 authors: [ MORIMORI0317 ]
 description: The ikisugi vowel plugin...
+commands:
+  vowel:
+    description: vowel plugin...
+    usage: /<vowel>
+    permission: op
