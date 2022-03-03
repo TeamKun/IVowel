@@ -119,6 +119,10 @@ public class JapaneseManager {
     }
 
     public FNPair<String, String> convertVowelOnly(String text, boolean nonThrow, LeaveType... types) {
+        if (Config.hiraganaOnly) {
+            if (!isHiragana(text))
+                throw new IllegalStateException("平仮名のみ入力可能");
+        }
         List<LeaveType> type = Arrays.asList(types);
         text = convertHiragana(text, nonThrow);
         StringBuilder sb = new StringBuilder();
@@ -134,6 +138,15 @@ public class JapaneseManager {
 
     public static enum LeaveType {
         MIN, NOT_CNV;
+
+        public static LeaveType[] current() {
+            List<LeaveType> types = new ArrayList<>();
+            if (Config.leaveLowercase)
+                types.add(MIN);
+            if (Config.leaveSymbol)
+                types.add(NOT_CNV);
+            return types.toArray(new LeaveType[0]);
+        }
     }
 
     public String convertHiragana(String text, boolean nonThrow) {
@@ -176,6 +189,7 @@ public class JapaneseManager {
     private static final Pattern pattern = Pattern.compile("^[\\u3040-\\u309F!?！？\\-ー\\[\\]「」【】（）()#%。.~～]+$");
 
     public boolean isHiragana(String value) {
+        if (value.isEmpty()) return true;
         return pattern.matcher(value).matches();
     }
 

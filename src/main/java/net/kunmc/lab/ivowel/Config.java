@@ -5,5 +5,5 @@ public class Config {
     public static boolean leaveLowercase = true;
     public static boolean leaveSymbol = true;
     public static boolean showHover;
-    public static boolean hiraganaOnly;
+    public static boolean hiraganaOnly = true;
 }

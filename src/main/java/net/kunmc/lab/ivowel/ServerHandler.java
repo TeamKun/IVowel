@@ -28,13 +28,16 @@ public class ServerHandler implements Listener {
         if (cmp instanceof TextComponent) {
             String raw = ((TextComponent) cmp).content();
             try {
-                FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(raw, true, JapaneseManager.LeaveType.NOT_CNV, JapaneseManager.LeaveType.MIN);
+                FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(raw, Config.noError, JapaneseManager.LeaveType.current());
                 String hover = raw + "\n" +
                         "↓\n" +
                         tx.getRight() + "\n" +
                         "↓\n" +
                         tx.getLeft();
-                e.message(Component.text(tx.getLeft()).hoverEvent(HoverEvent.showText(Component.text(hover))));
+                Component txc = Component.text(tx.getLeft());
+                if (Config.showHover)
+                    txc = txc.hoverEvent(HoverEvent.showText(Component.text(hover)));
+                e.message(txc);
             } catch (IllegalStateException ex) {
                 e.setCancelled(true);
                 e.getPlayer().sendMessage(Component.text(ex.getMessage()).color(TextColor.color(0xFF0000)));
@@ -71,7 +74,7 @@ public class ServerHandler implements Listener {
             if (cmp instanceof TextComponent) {
                 Component retName;
                 try {
-                    FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(((TextComponent) cmp).content(), false, JapaneseManager.LeaveType.NOT_CNV, JapaneseManager.LeaveType.MIN);
+                    FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(((TextComponent) cmp).content(), Config.noError, JapaneseManager.LeaveType.current());
                     retName = Component.text(tx.getLeft());
                 } catch (IllegalStateException ex) {
                     retName = Component.text("変換できない文字です").color(TextColor.color(0xFF0000));
@@ -107,7 +110,7 @@ public class ServerHandler implements Listener {
     private static Component convert(String text) {
         Component retName;
         try {
-            FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(text, false, JapaneseManager.LeaveType.NOT_CNV, JapaneseManager.LeaveType.MIN);
+            FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(text, Config.noError, JapaneseManager.LeaveType.current());
             retName = Component.text(tx.getLeft());
         } catch (IllegalStateException ex) {
             retName = Component.text(ex.getMessage()).color(TextColor.color(0xFF0000));
