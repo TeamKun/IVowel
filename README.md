@@ -19,3 +19,9 @@
 # 例
 ![KatyouBroken](https://cdn.discordapp.com/attachments/358878159615164416/948839340350513162/2022-03-03_16h08_28.png)
 
+# 利用ライブラリ
+以下のライブラリはjarファイル内に同梱されているので別途でダウンロードする必要はありません。
+
+* [kuromoji](https://github.com/atilika/kuromoji) (漢字変換用) ([Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0))
+* [Ikisugi Logger](https://github.com/TeamKun/IkisugiLogger) (イキスギ起動ログ用）
+* [Felnull Java Library](https://github.com/TeamFelnull/FelNullJavaLibrary) (個人用Javaライブラリ)
