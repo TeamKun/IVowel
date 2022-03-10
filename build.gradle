@@ -30,7 +30,7 @@ dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
 
     shadow 'net.kunmc.lab:ikisugi-logger:1.3'
-    shadow 'dev.felnull:felnull-java-library:1.41'
+    shadow 'dev.felnull:felnull-java-library:1.44'
     shadow 'com.atilika.kuromoji:kuromoji:0.9.0'
     shadow 'com.atilika.kuromoji:kuromoji-ipadic:0.9.0'
 
