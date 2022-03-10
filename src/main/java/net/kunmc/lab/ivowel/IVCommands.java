@@ -1,5 +1,6 @@
 package net.kunmc.lab.ivowel;
 
+import com.google.common.collect.ImmutableList;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -7,11 +8,13 @@ import org.bukkit.command.TabExecutor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class IVCommands implements TabExecutor {
+    private static final List<String> comps = ImmutableList.of("error", "lowercase", "symbol", "hover", "hiragana", "state");
+
     public static void init() {
         Bukkit.getPluginCommand("vowel").setExecutor(new IVCommands());
     }
@@ -74,11 +77,20 @@ public class IVCommands implements TabExecutor {
         return true;
     }
 
+
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         if (command.getName().equals("vowel")) {
-            if (args.length == 1)
-                return Arrays.asList("error", "lowercase", "symbol", "hover", "hiragana", "state");
+            if (args.length == 0) {
+                return comps;
+            } else if (args.length == 1) {
+                List<String> strs = new ArrayList<>();
+                for (String comp : comps) {
+                    if (comp.startsWith(args[0]))
+                        strs.add(comp);
+                }
+                return Collections.unmodifiableList(strs);
+            }
         }
         return Collections.emptyList();
     }
