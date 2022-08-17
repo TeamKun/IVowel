@@ -30,22 +30,24 @@ dependencies {
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
 
     shadow 'net.kunmc.lab:ikisugi-logger:1.3'
-    shadow 'dev.felnull:felnull-java-library:1.49'
+    // shadow 'dev.felnull:felnull-java-library:1.56'
     shadow 'com.atilika.kuromoji:kuromoji:0.9.0'
     shadow 'com.atilika.kuromoji:kuromoji-ipadic:0.9.0'
 
     shadow 'com.mariten:kanatools:1.3.0'
 
     //https://raw.githubusercontent.com/unicode-org/icu/main/icu4c/LICENSE
-    implementation 'com.ibm.icu:icu4j:71.1'
+    shadow 'com.ibm.icu:icu4j:71.1'
 }
 shadowJar {
     classifier ''
     project.configurations.shadow.setTransitive(true);
     configurations = [project.configurations.shadow]
-    relocate 'net.kunmc.lab.ikisugilogger', 'net.kunmc.lab.ivowel.lib.net.kunmc.lab.ikisugilogger'
-    relocate 'dev.felnull', 'net.kunmc.lab.ivowel.lib.dev.felnull'
-    relocate 'com.atilika.kuromoji', 'net.kunmc.lab.ivowel.lib.com.atilika.kuromoji'
+    relocate 'net.kunmc.lab.ikisugilogger', 'net.kunmc.lab.ivowel.include.net.kunmc.lab.ikisugilogger'
+    // relocate 'dev.felnull', 'net.kunmc.lab.ivowel.include.dev.felnull'
+    relocate 'com.atilika.kuromoji', 'net.kunmc.lab.ivowel.include.com.atilika.kuromoji'
+    relocate 'com.mariten', 'net.kunmc.lab.ivowel.include.com.mariten'
+    relocate 'com.ibm.icu', 'net.kunmc.lab.ivowel.include.com.ibm.icu'
 }
 
 def targetJavaVersion = 8

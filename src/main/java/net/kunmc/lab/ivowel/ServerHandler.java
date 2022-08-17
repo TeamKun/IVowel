@@ -1,6 +1,5 @@
 package net.kunmc.lab.ivowel;
 
-import dev.felnull.fnjl.tuple.FNPair;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -28,17 +27,19 @@ public class ServerHandler implements Listener {
         if (cmp instanceof TextComponent) {
             String raw = ((TextComponent) cmp).content();
             try {
-                FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(raw, Config.noError, JapaneseManager.LeaveType.current());
-                String hover = raw + "\n" +
-                        "↓\n" +
-                        tx.getRight() + "\n" +
-                        "↓\n" +
-                        tx.getLeft();
-                Component txc = Component.text(tx.getLeft());
-                if (Config.showHover)
+                VowelConverter.VowelResult ret = VowelConverter.getInstance().convertVowelOnlyErrored(raw, Config.leaveSymbol);// JapaneseManager.getInstance().convertVowelOnly(raw, Config.noError, JapaneseManager.LeaveType.current());
+
+                Component txc = Component.text(ret.getCurrentVowel());
+                if (Config.showHover) {
+                    String hover = raw + "\n" +
+                            "↓\n" +
+                            ret.getHira() + "\n" +
+                            "↓\n" +
+                            ret.getCurrentVowel();
                     txc = txc.hoverEvent(HoverEvent.showText(Component.text(hover)));
+                }
                 e.message(txc);
-            } catch (IllegalStateException ex) {
+            } catch (Exception ex) {
                 e.setCancelled(true);
                 e.getPlayer().sendMessage(Component.text(ex.getMessage()).color(TextColor.color(0xFF0000)));
             }
@@ -74,9 +75,10 @@ public class ServerHandler implements Listener {
             if (cmp instanceof TextComponent) {
                 Component retName;
                 try {
-                    FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(((TextComponent) cmp).content(), Config.noError, JapaneseManager.LeaveType.current());
-                    retName = Component.text(tx.getLeft());
-                } catch (IllegalStateException ex) {
+                    //   FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(((TextComponent) cmp).content(), Config.noError, JapaneseManager.LeaveType.current());
+                    VowelConverter.VowelResult ret = VowelConverter.getInstance().convertVowelOnlyErrored(((TextComponent) cmp).content(), Config.leaveSymbol);
+                    retName = Component.text(ret.getCurrentVowel());
+                } catch (Exception ex) {
                     retName = Component.text("変換できない文字です").color(TextColor.color(0xFF0000));
                 }
                 e.line(i, retName);
@@ -110,9 +112,10 @@ public class ServerHandler implements Listener {
     private static Component convert(String text) {
         Component retName;
         try {
-            FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(text, Config.noError, JapaneseManager.LeaveType.current());
-            retName = Component.text(tx.getLeft());
-        } catch (IllegalStateException ex) {
+            //  FNPair<String, String> tx = JapaneseManager.getInstance().convertVowelOnly(text, Config.noError, JapaneseManager.LeaveType.current());
+            VowelConverter.VowelResult ret = VowelConverter.getInstance().convertVowelOnlyErrored(text, Config.leaveSymbol);
+            retName = Component.text(ret.getCurrentVowel());
+        } catch (Exception ex) {
             retName = Component.text(ex.getMessage()).color(TextColor.color(0xFF0000));
         }
         return retName;
