@@ -9,7 +9,7 @@ public final class IVowel extends JavaPlugin {
     public void onEnable() {
         getServer().getPluginManager().registerEvents(new ServerHandler(), this);
 
-        IkisugiLogger logger = new IkisugiLogger("the ikisugi\nvowel");
+        IkisugiLogger logger = new IkisugiLogger("the ikisugi\nvowel only");
         logger.setColorType(IkisugiLogger.ColorType.VOWEL_ONLY);
         logger.setCenter(true);
         getLogger().info(logger.createLn());

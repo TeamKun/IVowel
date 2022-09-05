@@ -3,7 +3,7 @@ version: '${version}'
 main: net.kunmc.lab.ivowel.IVowel
 api-version: 1.16
 authors: [ MORIMORI0317 ]
-description: The ikisugi vowel plugin... used kuromoji
+description: The ikisugi vowel plugin... used kuromoji and icu4j and kanatools
 commands:
   vowel:
     description: vowel plugin...

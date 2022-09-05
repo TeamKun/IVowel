@@ -159,8 +159,12 @@ public class VowelConverter {
             if (i == chars.length - 1 && c == 'n')
                 sb.append("n");
 
-            if (i == 0 && c == 'n' && chars.length >= 2 && !isVowel(chars[1]))
+            // if (i == 0 && c == 'n' && chars.length >= 2 && !isVowel(chars[1]))
+            //     sb.append("n'");
+
+            if (i < chars.length - 1 && c == 'n' && !isVowel(chars[i + 1])) {
                 sb.append("n'");
+            }
 
             if (i < chars.length - 1 && c == '~' && isVowel(chars[i + 1]))
                 sb.append("~");
