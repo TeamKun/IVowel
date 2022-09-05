@@ -25,3 +25,4 @@
 * [Kuromoji](https://github.com/atilika/kuromoji) (漢字読み取得) ([Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0))
 * [Ikisugi Logger](https://github.com/TeamKun/IkisugiLogger) (イキスギ起動ログ）
 * [ICU4J](https://mvnrepository.com/artifact/com.ibm.icu/icu4j) (ローマ字変換) ([UNICODE, INC. LICENSE](https://raw.githubusercontent.com/unicode-org/icu/main/icu4c/LICENSE))
+* [Kanatools](https://github.com/mariten/kanatools-java) (ひらがな、カタカナ変換) ([MIT](https://github.com/mariten/kanatools-java/blob/master/LICENSE))
